@@ -27,12 +27,12 @@ File = ''
 [Clients]
   [Clients.Data]
   Protocol = 'http'
-  Host = 'localhost'
+  Host = '10.60.6.228'
   Port = 48080
 
   [Clients.Metadata]
   Protocol = 'http'
-  Host = 'localhost'
+  Host = '10.60.6.228'
   Port = 48081
 
   [Clients.Logging]
@@ -54,7 +54,7 @@ File = ''
 # Driver configs
 [Driver]
 IncomingSchema = 'tcp'
-IncomingHost = '0.0.0.0'
+IncomingHost = '10.99.253.133'
 IncomingPort = '1883'
 IncomingUser = 'admin'
 IncomingPassword = 'public'
@@ -63,7 +63,7 @@ IncomingKeepAlive = '3600'
 IncomingClientId = 'IncomingDataSubscriber'
 IncomingTopic = 'DataTopic'
 ResponseSchema = 'tcp'
-ResponseHost = '0.0.0.0'
+ResponseHost = '10.99.253.133'
 ResponsePort = '1883'
 ResponseUser = 'admin'
 ResponsePassword = 'public'
@@ -73,3 +73,12 @@ ResponseClientId = 'CommandResponseSubscriber'
 ResponseTopic = 'ResponseTopic'
 ConnEstablishingRetry = '10'
 ConnRetryWaitTime = '5'
+RegisterSchema = 'tcp'
+RegisterHost = '10.99.253.133'
+RegisterPort = '1883'
+RegisterUser = 'admin'
+RegisterPassword = 'public'
+RegisterQos = '0'
+RegisterKeepAlive = '3600'
+RegisterClientId = 'RegisterSubscriber'
+RegisterTopic = 'RegisterTopic'

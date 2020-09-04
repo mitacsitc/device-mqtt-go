@@ -49,6 +49,7 @@ type Driver struct {
 	AsyncCh          chan<- *sdkModel.AsyncValues
 	CommandResponses sync.Map
 	Config           *configuration
+	DeviceCh         chan<- []sdkModel.DiscoveredDevice
 }
 
 func NewProtocolDriver() sdkModel.ProtocolDriver {
@@ -61,6 +62,7 @@ func NewProtocolDriver() sdkModel.ProtocolDriver {
 func (d *Driver) Initialize(lc logger.LoggingClient, asyncCh chan<- *sdkModel.AsyncValues, deviceCh chan<- []sdkModel.DiscoveredDevice) error {
 	d.Logger = lc
 	d.AsyncCh = asyncCh
+	d.DeviceCh = deviceCh
 
 	config, err := CreateDriverConfig(device.DriverConfigs())
 	if err != nil {
@@ -80,6 +82,14 @@ func (d *Driver) Initialize(lc logger.LoggingClient, asyncCh chan<- *sdkModel.As
 		err := startIncomingListening()
 		if err != nil {
 			d.Logger.Error(fmt.Sprintf("start incoming data Listener failed, please check MQTT broker settings are correct, %v", err))
+			os.Exit(1)
+		}
+	}()
+
+	go func() {
+		err := startRegisterListening()
+		if err != nil {
+			d.Logger.Error(fmt.Sprintf("start device register Listener failed, please check MQTT broker settings are correct, %v", err))
 			os.Exit(1)
 		}
 	}()

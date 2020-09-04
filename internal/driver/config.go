@@ -47,6 +47,16 @@ type configuration struct {
 
 	ConnEstablishingRetry int
 	ConnRetryWaitTime     int
+
+	RegisterSchema    string
+	RegisterHost      string
+	RegisterPort      int
+	RegisterUser      string
+	RegisterPassword  string
+	RegisterQos       int
+	RegisterKeepAlive int
+	RegisterClientId  string
+	RegisterTopic     string
 }
 
 // CreateDriverConfig use to load driver config for incoming listener and response listener
